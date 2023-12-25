@@ -1,1 +1,1 @@
-# GameManager - a Prisoner's Dilemma Tournament Manager
+# PDGM - a Prisoner's Dilemma Tournament Manager
