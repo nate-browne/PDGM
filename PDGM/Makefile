@@ -11,6 +11,7 @@ OPT       = -O3 -Werror -Wno-unused-but-set-variable
 D_FLAG    = -g
 LD_FLAGS  = -Wall -Wextra
 EXE       = PDGM
+TEST      = tester
 GCC       = gcc
 RM        = rm
 
@@ -27,11 +28,15 @@ ifeq ($(UNAME),Darwin)
 endif
 endif
 
-HEADERS = functions.h pdgm.h
-SRCS    = pdgm.c
+HEADERS   = functions.h pdgm.h
+SRCS      = pdgm.c rand.c init.c message.c
+TEST_SRCS = pdgm.c rand.c init.c message.c test.c
 
 # Generic variable for converting the engine source files into object files
 OBJS      = $(SRCS:.c=.o)
+
+# Generic variable for converting the perft test source files into object files
+TEST_OBJS = $(TEST_SRCS:.c=.o)
 
 # NOTE: In the below makefile targets, replace $(D_FLAG) with $(OPT)
 # to enable optimizations and turn off debugging info
@@ -53,12 +58,27 @@ $(EXE): $(OBJS)
 	@echo ""
 	@echo "Compilation successful!"
 
+# Target for creating the perft testing exectuable
+# First compiles all object files, then links them together,
+# moves the exectuable to the bin directory, and echos the results out.
+$(TEST): $(TEST_OBJS)
+	@echo "Creating executable..."
+	$(GCC) -o $(TEST) $(LD_FLAGS) $(OPT) $(TEST_OBJS)
+	@mv $(TEST) ../bin
+	@echo ""
+	@echo "Compilation successful!"
 
 # Target for compiling the engine source files
 # First creates the bin directory (see `start` target below)
 # then uses the generic .c.o target above to compile each C
 # file one by one
 $(OBJS): start $(HEADERS)
+
+# Target for compiling the perft testing source files
+# First creates the bin directory (see `start` target below)
+# then uses the generic .c.o target above to compile each C
+# file one by one
+$(TEST_OBJS): start $(HEADERS)
 
 # Target that creates the bin directory (if it doesn't already exist)
 start:
