@@ -9,29 +9,11 @@
 #include <string.h>
 #include <stdio.h>
 
-//#define DEBUG
-
-// kind of messy, but this whole mess allows us to throw in
-// assert debug statements without mass commenting them out later
-// just comment out line 50
-// to be clear, I took this from a book and didn't come up with this macro
-// myself
-#ifndef DEBUG
-#define ASSERT(n)
-#else
-#define ASSERT(n) \
-if(!(n)) { \
-printf("%s - \033[91mFAILED!!\033[0m", #n); \
-printf(" on %s ", __DATE__); \
-printf("at %s ", __TIME__); \
-printf("in file %s ", __FILE__); \
-printf("on line %d\n", __LINE__); \
-exit(1);}
-#endif
-
 #define NAME "PDGM v0.1.0"
 
-#define GAMES_PROMPT "Enter number of games to run (default is 3): "
+#define WELCOME_STR "Welcome to %s!\n"
+#define GAMES_PROMPT "Enter number of simulations to run (default is 3): "
+#define RESULTS_STR "RESULTS:\np1 victories: %d\np2 victories: %d\nties: %d\nWinner: %s\n"
 
 #define DEFAULT_GAME_NUMBER 3
 
@@ -43,13 +25,15 @@ exit(1);}
 
 // base number of rounds
 #define BASE_ROUND_NUMBER 200
+#define ROUND_PLUS_MINUS 11
 
 typedef struct GameState {
 
   uint32_t p1_score;
   uint32_t p2_score;
   uint32_t total_rounds;
-  uint32_t current_round;
+  char* p1_previous_move;
+  char* p2_previous_move;
 } GameState_t;
 
 #endif
