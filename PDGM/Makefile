@@ -30,7 +30,7 @@ endif
 
 HEADERS   = functions.h pdgm.h
 SRCS      = pdgm.c rand.c init.c message.c game.c
-TEST_SRCS = pdgm.c rand.c init.c message.c test.c game.c
+TEST_SRCS = rand.c init.c message.c test.c
 
 # Generic variable for converting the engine source files into object files
 OBJS      = $(SRCS:.c=.o)

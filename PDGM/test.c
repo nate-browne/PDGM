@@ -29,3 +29,10 @@ void test_init_game(void) {
   ASSERT(gs.total_rounds >= 190);
   ASSERT(gs.total_rounds <= 210);
 }
+
+int main(void) {
+  test_calculate_round_number();
+  test_init_game();
+
+  return EXIT_SUCCESS;
+}
