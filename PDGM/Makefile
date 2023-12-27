@@ -58,7 +58,7 @@ $(EXE): $(OBJS)
 	@echo ""
 	@echo "Compilation successful!"
 
-# Target for creating the perft testing exectuable
+# Target for creating the testing exectuable
 # First compiles all object files, then links them together,
 # moves the exectuable to the bin directory, and echos the results out.
 $(TEST): $(TEST_OBJS)
