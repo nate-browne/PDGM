@@ -29,8 +29,8 @@ endif
 endif
 
 HEADERS   = functions.h pdgm.h
-SRCS      = pdgm.c rand.c init.c message.c
-TEST_SRCS = pdgm.c rand.c init.c message.c test.c
+SRCS      = pdgm.c rand.c init.c message.c game.c
+TEST_SRCS = pdgm.c rand.c init.c message.c test.c game.c
 
 # Generic variable for converting the engine source files into object files
 OBJS      = $(SRCS:.c=.o)

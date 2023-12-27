@@ -7,7 +7,7 @@ static int32_t process_round_result(GameState_t *gs, char p1_decision, char p2_d
 
 int32_t run_game(GameState_t *gs) {
 
-  for(int i = 0; i < gs->total_rounds; ++i) {
+  for(uint32_t i = 0; i < gs->total_rounds; ++i) {
 
   }
 

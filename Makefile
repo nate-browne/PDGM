@@ -15,7 +15,7 @@ $(EXE):
 # create the perft test executable
 # calls the inner makefile target (see other file for explanation)
 $(TEST):
-	@make -C ./notarook-ie/ $(TEST)
+	@make -C ./PDGM/ $(TEST)
 
 # Create and run the engine executable in a command line debugger
 # calls the inner makefile target (see other file for explanation)
