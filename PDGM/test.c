@@ -31,8 +31,10 @@ void test_init_game(void) {
 }
 
 int main(void) {
+  fprintf(stderr, "%s\n", "Starting tests...");
   test_calculate_round_number();
   test_init_game();
 
+  fprintf(stderr, "%s\n", "Tests complete!");
   return EXIT_SUCCESS;
 }
