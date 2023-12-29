@@ -2,6 +2,7 @@
 #define PDGM_H
 
 #include <stdint.h>
+#include <unistd.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -9,11 +10,9 @@
 #include <string.h>
 #include <stdio.h>
 
-#define NAME "PDGM v0.1.0"
+#include "strings.h"
 
-#define WELCOME_STR "Welcome to %s!\n"
-#define GAMES_PROMPT "Enter number of simulations to run (default is 3): "
-#define RESULTS_STR "RESULTS:\np1 victories: %d\np2 victories: %d\nties: %d\nWinner: %s\n"
+#define NAME "PDGM v0.1.0"
 
 #define DEFAULT_GAME_NUMBER 3
 
@@ -35,5 +34,19 @@ typedef struct GameState {
   char* p1_previous_move;
   char* p2_previous_move;
 } GameState_t;
+
+typedef struct ParticipantProc {
+
+  int fd[2]; // file descriptors
+  int pid; // process id
+  char *name; // name of the participant
+} ParticipantProc_t;
+
+typedef struct RunningCount {
+
+  int32_t p1_wins;
+  int32_t p2_wins;
+  int32_t ties;
+} RunningCount_t;
 
 #endif

@@ -8,3 +8,9 @@ void init_game(GameState_t *gs) {
   gs->p1_previous_move = NULL;
   gs->p2_previous_move = NULL;
 }
+
+void init_running_count(RunningCount_t *rc) {
+  rc->p1_wins = 0;
+  rc->p2_wins = 0;
+  rc->ties = 0;
+}

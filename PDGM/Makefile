@@ -28,9 +28,9 @@ ifeq ($(UNAME),Darwin)
 endif
 endif
 
-HEADERS   = functions.h pdgm.h
+HEADERS   = functions.h pdgm.h strings.h
 SRCS      = pdgm.c rand.c init.c message.c game.c
-TEST_SRCS = rand.c init.c message.c test.c
+TEST_SRCS = rand.c init.c test.c
 
 # Generic variable for converting the engine source files into object files
 OBJS      = $(SRCS:.c=.o)

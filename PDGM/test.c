@@ -30,6 +30,15 @@ void test_init_game(void) {
   ASSERT(gs.total_rounds <= 210);
 }
 
+void test_init_running_count(void) {
+  RunningCount_t rc;
+  init_running_count(&rc);
+
+  ASSERT(rc.p1_wins == 0);
+  ASSERT(rc.p2_wins == 0);
+  ASSERT(rc.ties == 0);
+}
+
 int main(void) {
   fprintf(stderr, "%s\n", "Starting tests...");
   test_calculate_round_number();

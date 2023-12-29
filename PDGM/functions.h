@@ -8,6 +8,7 @@ extern int32_t calculate_round_number(void);
 
 /* init.c */
 extern void init_game(GameState_t *);
+extern void init_running_count(RunningCount_t *);
 
 /* message.c */
 extern void broadcast_message(char *);
