@@ -37,7 +37,8 @@ typedef struct GameState {
 
 typedef struct ParticipantProc {
 
-  int fd[2]; // file descriptors
+  int fd_from;
+  int fd_to;
   int pid; // process id
   char *name; // name of the participant
 } ParticipantProc_t;

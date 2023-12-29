@@ -17,4 +17,7 @@ extern char process_incoming_message(char *);
 /* game.c */
 extern int32_t run_game(GameState_t *);
 
+/* process.c */
+extern void destroy_participant_process(ParticipantProc_t *, int);
+
 #endif
