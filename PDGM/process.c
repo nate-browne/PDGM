@@ -48,6 +48,7 @@ ParticipantProc_t * start_participant_process(char *exe_name) {
   pp->fd_from = from_prog[0];
   pp->fd_to = to_prog[1];
   pp->in = fdopen(pp->fd_from, "r");
+  pp->out = fdopen(pp->fd_to, "w");
   pp->name = exe_name;
   return pp;
 }
@@ -59,13 +60,15 @@ void destroy_participant_process(ParticipantProc_t *pp, int signal_type) {
 
   wait((int *)0);
   fclose(pp->in);
+  fclose(pp->out);
   close(pp->fd_from);
   close(pp->fd_to);
   free(pp);
 }
 
 void pprint(FILE* out, char *msg) {
-  fwrite(msg, sizeof(char), strlen(msg), out);
+  fprintf(out, "%s\n", msg);
+  fflush(out);
 }
 
 void procread(ParticipantProc_t *pp, char *buffer) {

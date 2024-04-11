@@ -1,11 +1,10 @@
 #include "pdgm.h"
 #include "functions.h"
 
-static void run_games(const int32_t num_games, GameState_t *gs, RunningCount_t *rc) {
+static void run_games(const int32_t num_games, GameState_t *gs, RunningCount_t *rc, ParticipantProc_t *pp1, ParticipantProc_t *pp2) {
   for(int32_t i = 0; i < num_games; ++i) {
-
     init_game(gs);
-    switch(run_game(gs)) {
+    switch(run_game(gs, pp1, pp2)) {
       case 0:
         rc->p1_wins++;
         break;
@@ -19,60 +18,53 @@ static void run_games(const int32_t num_games, GameState_t *gs, RunningCount_t *
   }
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
   srand(time(NULL));
 
-  char line[BUFSIZ];
-  memset(line, '\0', BUFSIZ);
+  char line[BUFSIZ] = {0};
 
   fprintf(stdout, WELCOME_STR, NAME);
 
-  bool repeat = false;
+  fprintf(stdout, GAMES_PROMPT);
+  fflush(stdout);
+  memset(line, '\0', BUFSIZ);
 
-  do {
-    fprintf(stdout, GAMES_PROMPT);
-    fflush(stdout);
-    memset(line, '\0', BUFSIZ);
+  while(true) {
 
-    while(true) {
+    if(!fgets(line, BUFSIZ, stdin)) continue;
+    if(*line == '\n') continue;
+    break;
+  }
 
-      if(!fgets(line, BUFSIZ, stdin)) continue;
-      if(*line == '\n') continue;
-      break;
-    }
+  int parsed = atoi(line);
+  int32_t num_games = DEFAULT_GAME_NUMBER;
 
-    int parsed = atoi(line);
-    int32_t num_games = DEFAULT_GAME_NUMBER;
+  if(parsed > DEFAULT_GAME_NUMBER) {
+    num_games = parsed; 
+  }
 
-    if(parsed > DEFAULT_GAME_NUMBER) {
-      num_games = parsed; 
-    }
+  ParticipantProc_t *pp1 = start_participant_process(argv[1]);
+  ParticipantProc_t *pp2 = start_participant_process(argv[2]);
 
-    RunningCount_t rc;
-    init_running_count(&rc);
+  RunningCount_t rc;
+  init_running_count(&rc);
 
-    GameState_t gs;
+  GameState_t gs;
 
-    run_games(num_games, &gs, &rc);
+  run_games(num_games, &gs, &rc, pp1, pp2);
 
-    char *winner;
-    if(rc.p1_wins > rc.p2_wins) {
-      winner = "p1";
-    } else if(rc.p1_wins < rc.p2_wins) {
-      winner = "p2";
-    } else {
-      winner = "tie";
-    }
+  char *winner;
+  if(rc.p1_wins > rc.p2_wins) {
+    winner = "p1";
+  } else if(rc.p1_wins < rc.p2_wins) {
+    winner = "p2";
+  } else {
+    winner = "tie";
+  }
 
-    fprintf(stdout, RESULTS_STR, rc.p1_wins, rc.p2_wins, rc.ties, winner);
-
-    memset(line, '\0', BUFSIZ);
-    fprintf(stdout, REPEAT_STR);
-    fflush(stdout);
-
-    if(!fgets(line, BUFSIZ, stdin)) repeat = false;
-    if(toupper(*line) == 'Y') repeat = true;
-  } while(repeat);
+  fprintf(stdout, RESULTS_STR, rc.p1_wins, rc.p2_wins, rc.ties, winner);
+  destroy_participant_process(pp1, SIGTERM);
+  destroy_participant_process(pp2, SIGTERM);
 
   return EXIT_SUCCESS;
 }

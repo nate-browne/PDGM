@@ -43,6 +43,7 @@ typedef struct ParticipantProc {
   int fd_from; // stdout for the process
   int fd_to; // stdin for the process
   FILE *in; // file pointer for above file descriptor
+  FILE *out; // file pointer for above file descriptor
   int pid; // process id
   char *name; // name of the participant
 } ParticipantProc_t;
