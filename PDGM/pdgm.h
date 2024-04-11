@@ -7,6 +7,9 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <time.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <signal.h>
 #include <string.h>
 #include <stdio.h>
 
@@ -37,8 +40,9 @@ typedef struct GameState {
 
 typedef struct ParticipantProc {
 
-  int fd_from;
-  int fd_to;
+  int fd_from; // stdout for the process
+  int fd_to; // stdin for the process
+  FILE *in; // file pointer for above file descriptor
   int pid; // process id
   char *name; // name of the participant
 } ParticipantProc_t;

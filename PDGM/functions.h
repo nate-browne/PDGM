@@ -19,5 +19,8 @@ extern int32_t run_game(GameState_t *);
 
 /* process.c */
 extern void destroy_participant_process(ParticipantProc_t *, int);
+extern ParticipantProc_t *start_participant_process(char *);
+extern void pprint(FILE *, char *);
+extern void procread(ParticipantProc_t *, char *);
 
 #endif
