@@ -5,8 +5,9 @@ static int32_t process_round_result(GameState_t *gs, char p1_decision, char p2_d
 
 }
 
-int32_t run_game(GameState_t *gs) {
+int32_t run_game(GameState_t *gs, ParticipantProc_t *p1, ParticipantProc_t *p2) {
 
+  // run the two bots here
   for(uint32_t i = 0; i < gs->total_rounds; ++i) {
 
   }
