@@ -43,8 +43,8 @@ int main(int argc, char *argv[]) {
     num_games = parsed; 
   }
 
-  ParticipantProc_t *pp1 = start_participant_process(argv[1]);
-  ParticipantProc_t *pp2 = start_participant_process(argv[2]);
+  ParticipantProc_t *pp1 = start_participant_process(argv[FIRST_PARTICIPANT]);
+  ParticipantProc_t *pp2 = start_participant_process(argv[SECOND_PARTICIPANT]);
 
   RunningCount_t rc;
   init_running_count(&rc);

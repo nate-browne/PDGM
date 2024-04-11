@@ -66,8 +66,9 @@ void destroy_participant_process(ParticipantProc_t *pp, int signal_type) {
   free(pp);
 }
 
-void procprint(FILE* out, char *msg) {
-  fprintf(out, "%s\n", msg);
+void procprint(ParticipantProc_t *pp, char *msg) {
+  fprintf(pp->out, "%s", msg);
+  fflush(pp->out);
 }
 
 void procread(ParticipantProc_t *pp, char *buffer) {

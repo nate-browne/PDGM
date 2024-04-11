@@ -29,6 +29,10 @@
 #define BASE_ROUND_NUMBER 200
 #define ROUND_PLUS_MINUS 11
 
+// command line arguments
+#define FIRST_PARTICIPANT 1
+#define SECOND_PARTICIPANT 2
+
 typedef struct GameState {
 
   uint32_t p1_score;
