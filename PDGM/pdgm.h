@@ -33,13 +33,18 @@
 #define FIRST_PARTICIPANT 1
 #define SECOND_PARTICIPANT 2
 
+// moves
+#define COOPERATE 0
+#define DEFECT 1
+#define NOOP 2
+
 typedef struct GameState {
 
   uint32_t p1_score;
   uint32_t p2_score;
   uint32_t total_rounds;
-  char* p1_previous_move;
-  char* p2_previous_move;
+  int p1_previous_move;
+  int p2_previous_move;
 } GameState_t;
 
 typedef struct ParticipantProc {
