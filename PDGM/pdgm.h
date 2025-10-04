@@ -22,10 +22,12 @@
 #define DEFAULT_GAME_NUMBER 3
 
 // score constants
-#define TWO_COOP 3
-#define ONE_COOP_GAIN 5
-#define ONE_COOP_LOSS 0
-#define NO_COOP 1
+enum POINTS_OPTIONS {
+  TWO_COOP = 3,
+  ONE_COOP_GAIN = 5,
+  ONE_COOP_LOSS = 0,
+  NO_COOP = 1
+};
 
 // base number of rounds
 #define BASE_ROUND_NUMBER 200
@@ -35,7 +37,8 @@
 #define FIRST_PARTICIPANT 1
 #define SECOND_PARTICIPANT 2
 
-enum SCORE_OPTIONS {
+// Commands participants issue to interact
+enum PARTICIPANT_COMMANDS {
   COOPERATE = 0,
   DEFECT = 1,
   NOOP = 2
