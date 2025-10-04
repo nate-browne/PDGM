@@ -3,14 +3,23 @@
 
 static void set_up_child_IO(int to_prog[2], int from_prog[2]) {
   signal(SIGPIPE, SIG_IGN);
-  pipe(to_prog);
-  pipe(from_prog);
+
+  int ret_val = pipe(to_prog);
+  if(!ret_val) {
+    fprintf(stderr, "Error setting up program pipe.\n");
+    exit(1);
+  }
+
+  ret_val = pipe(from_prog);
+  if(!ret_val) {
+    fprintf(stderr, "Error setting up program pipe.\n");
+    exit(1);
+  }
 }
 
 ParticipantProc_t * start_participant_process(char *exe_name) {
   int pid;
   int to_prog[2], from_prog[2];
-  char buf[BUFSIZ];
 
   set_up_child_IO(to_prog, from_prog);
 
@@ -72,5 +81,9 @@ void procprint(ParticipantProc_t *pp, char *msg) {
 }
 
 void procread(ParticipantProc_t *pp, char *buffer) {
-  fread(buffer, sizeof(char), BUFSIZ, pp->in);
+  size_t nbytes = fread(buffer, sizeof(char), BUFSIZ, pp->in);
+  if(!nbytes) {
+    fprintf(stderr, "failed to read from participant process %s\n", pp->name);
+    exit(1);
+  }
 }

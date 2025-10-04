@@ -1,6 +1,8 @@
 #ifndef PDGM_H
 #define PDGM_H
 
+#define _POSIX_C_SOURCE 200809L
+
 #include <stdint.h>
 #include <unistd.h>
 #include <stdbool.h>
@@ -33,10 +35,11 @@
 #define FIRST_PARTICIPANT 1
 #define SECOND_PARTICIPANT 2
 
-// moves
-#define COOPERATE 0
-#define DEFECT 1
-#define NOOP 2
+enum SCORE_OPTIONS {
+  COOPERATE = 0,
+  DEFECT = 1,
+  NOOP = 2
+};
 
 typedef struct GameState {
 

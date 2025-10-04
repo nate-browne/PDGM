@@ -22,8 +22,8 @@ void test_init_game(void) {
   GameState_t gs;
   init_game(&gs);
 
-  ASSERT(gs.p1_previous_move == NULL);
-  ASSERT(gs.p2_previous_move == NULL);
+  ASSERT(gs.p1_previous_move == NOOP);
+  ASSERT(gs.p2_previous_move == NOOP);
   ASSERT(gs.p1_score == 0);
   ASSERT(gs.p2_score == 0);
   ASSERT(gs.total_rounds >= 190);
