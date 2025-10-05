@@ -7,3 +7,4 @@ bin/*
 .vscode
 .vcode/*
 tmp*
+__pycache__

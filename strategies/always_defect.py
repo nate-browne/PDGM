@@ -1,7 +1,7 @@
+#!/usr/bin/env python3
 """
 This strategy is simple: always choose to defect no matter what.
 """
-#!/usr/bin/env python3
 
 import sys
 
