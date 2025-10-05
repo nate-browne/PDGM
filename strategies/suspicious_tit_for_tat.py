@@ -31,9 +31,7 @@ if __name__ == '__main__':
             round_num = extract_num_val(cmd)
             if round_num == 1:
                 print(f'{ParticipantCommands.DEFECT.value}')
-                continue
-            else:
-                continue
+            continue
 
         if 'Opponent' in cmd:
             opp_prev_move = extract_num_val(cmd)
