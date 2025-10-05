@@ -31,14 +31,16 @@ int32_t run_game(GameState_t *gs, ParticipantProc_t *p1, ParticipantProc_t *p2) 
     procprint(p2, buffer);
     memset(buffer, '\0', BUFSIZ);
   
-    // next, print the opponent's previous move
-    sprintf(buffer, BUFSIZ, OPP_PREVIOUS_MOVE_STR, gs->p2_previous_move);
-    procprint(p1, buffer);
-    memset(buffer, '\0', BUFSIZ);
-  
-    sprintf(buffer, BUFSIZ, OPP_PREVIOUS_MOVE_STR, gs->p1_previous_move);
-    procprint(p2, buffer);
-    memset(buffer, '\0', BUFSIZ);
+    // next, print the opponent's previous move only if it's not the first turn
+    if(i > 0) {
+      sprintf(buffer, BUFSIZ, OPP_PREVIOUS_MOVE_STR, gs->p2_previous_move);
+      procprint(p1, buffer);
+      memset(buffer, '\0', BUFSIZ);
+    
+      sprintf(buffer, BUFSIZ, OPP_PREVIOUS_MOVE_STR, gs->p1_previous_move);
+      procprint(p2, buffer);
+      memset(buffer, '\0', BUFSIZ);
+    }
   
     // pull move from each player
     procread(p1, buffer);
