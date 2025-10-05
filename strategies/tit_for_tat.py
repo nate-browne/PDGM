@@ -42,6 +42,3 @@ if __name__ == '__main__':
             print(f'{ParticipantCommands.DEFECT.value}')
         else:
             print(f'{ParticipantCommands.COOPERATE.value}')
-
-if __name__ == '__main__':
-    pass

@@ -14,4 +14,3 @@ class ParticipantCommands(Enum):
 if __name__ == '__main__':
     while line := sys.stdin.readline().rstrip() != "quit":
         print(f'{ParticipantCommands.DEFECT.value}')
-
