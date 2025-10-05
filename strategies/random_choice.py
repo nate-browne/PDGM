@@ -7,12 +7,18 @@ back, so this is one of the simplest strategies (other than perma doing one thin
 
 import sys
 import random
+from enum import Enum
+
+class ParticipantCommands(Enum):
+    COOPERATE = 0
+    DEFECT = 1
+    NOOP = 2
 
 if __name__ == '__main__':
     random.seed()
 
     while line := sys.stdin.readline().rstrip() != "quit":
         if random.randrange(300) % 2 == 0:
-            print("0")
+            print(f"{ParticipantCommands.COOPERATE.value}")
         else:
-            print("1")
+            print(f'{ParticipantCommands.DEFECT.value}')
