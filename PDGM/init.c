@@ -1,6 +1,11 @@
 #include "pdgm.h"
 #include "functions.h"
 
+/**
+ * Basic function that takes in a pointer to a GameState_t and
+ * sets it up. Set the scores to 0, get the total number of rounds
+ * we will play (200 +/- [0,11)), then set the previous moves to NOOP
+ */
 void init_game(GameState_t *gs) {
   gs->p1_score = 0;
   gs->p2_score = 0;
@@ -9,6 +14,10 @@ void init_game(GameState_t *gs) {
   gs->p2_previous_move = NOOP;
 }
 
+/**
+ * Basic function that takes in a pointer to a RunningCount_t and
+ * sets it up. Sets all scores to 0.
+ */
 void init_running_count(RunningCount_t *rc) {
   rc->p1_wins = 0;
   rc->p2_wins = 0;
