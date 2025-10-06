@@ -10,7 +10,7 @@ static void run_games(const uint64_t num_games, GameState_t *gs, RunningCount_t 
   for(uint64_t i = 0; i < num_games; ++i) {
     init_game(gs);
     fprintf(stdout, GAME_STR, i + 1); // print which game number we're on to the console
-    fprintf(stdout, "\n%s\n\n", "*******************************");
+    fprintf(stdout, "%s\n\n", "*******************************");
     switch(run_game(gs, pp1, pp2)) {
       case P1_WINS:
         rc->p1_wins++;
