@@ -68,7 +68,7 @@ int main(int argc, char *argv[]) {
     winner = "tie";
   }
 
-  fprintf(stdout, RESULTS_STR, rc.p1_wins, rc.p2_wins, rc.ties, winner);
+  fprintf(stdout, RESULTS_STR, pp1->name, rc.p1_wins, pp2->name, rc.p2_wins, rc.ties, winner);
   procprint(pp1, "quit");
   procprint(pp2, "quit");
   destroy_participant_process(pp1, SIGTERM);
