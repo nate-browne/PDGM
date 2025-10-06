@@ -37,7 +37,12 @@ clean:
 new:
 	@make -C ./PDGM/ new
 
-## I mistype this enough to warrant adding it
+# I mistype this enough to warrant adding it
 lcean:
+	@echo "You meant 'make clean', didn't you. Don't worry, I'll fix it."
+	@make -C ./PDGM/ clean
+
+# Same with this one
+clena:
 	@echo "You meant 'make clean', didn't you. Don't worry, I'll fix it."
 	@make -C ./PDGM/ clean
