@@ -52,9 +52,6 @@ int main(int argc, char *argv[]) {
   ParticipantProc_t *pp1 = start_participant_process(argv[FIRST_PARTICIPANT]);
   ParticipantProc_t *pp2 = start_participant_process(argv[SECOND_PARTICIPANT]);
 
-  procprint(pp1, "Hello program 1\n");
-  procprint(pp2, "Hello program 2\n");
-
   RunningCount_t rc;
   init_running_count(&rc);
 
@@ -64,9 +61,9 @@ int main(int argc, char *argv[]) {
 
   char *winner;
   if(rc.p1_wins > rc.p2_wins) {
-    winner = "p1";
+    winner = pp1->name;
   } else if(rc.p1_wins < rc.p2_wins) {
-    winner = "p2";
+    winner = pp2->name;
   } else {
     winner = "tie";
   }

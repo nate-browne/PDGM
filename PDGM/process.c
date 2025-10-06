@@ -5,13 +5,13 @@ static void set_up_child_IO(int to_prog[2], int from_prog[2]) {
   signal(SIGPIPE, SIG_IGN);
 
   int ret_val = pipe(to_prog);
-  if(!ret_val) {
+  if(ret_val) {
     fprintf(stderr, "Error setting up program pipe.\n");
     exit(1);
   }
 
   ret_val = pipe(from_prog);
-  if(!ret_val) {
+  if(ret_val) {
     fprintf(stderr, "Error setting up program pipe.\n");
     exit(1);
   }
@@ -81,8 +81,7 @@ void procprint(ParticipantProc_t *pp, char *msg) {
 }
 
 void procread(ParticipantProc_t *pp, char *buffer) {
-  size_t nbytes = fread(buffer, sizeof(char), BUFSIZ, pp->in);
-  if(!nbytes) {
+  if(!fgets(buffer, BUFSIZ, pp->in)) {
     fprintf(stderr, "failed to read from participant process %s\n", pp->name);
     exit(1);
   }
