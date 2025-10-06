@@ -20,7 +20,11 @@
 
 #define NAME "PDGM v1.0.0"
 
+// smallest number of games we'll allow to be played
 #define DEFAULT_GAME_NUMBER 50
+
+// used in strtoul
+#define PARSE_BASE 10
 
 // score constants
 enum POINTS_OPTIONS {
@@ -32,6 +36,8 @@ enum POINTS_OPTIONS {
 
 // base number of rounds
 #define BASE_ROUND_NUMBER 200
+
+// max range for round modifier.
 #define ROUND_PLUS_MINUS 11
 
 // command line arguments
@@ -45,15 +51,28 @@ enum PARTICIPANT_COMMANDS {
   NOOP = 2
 };
 
+// Winner results from the games
+enum WINNER_RESULTS {
+  P1_WINS = 0,
+  P2_WINS = 1,
+  TIE = 2
+};
+
+/**
+ * This is the state remembered by any particular game.
+ */
 typedef struct GameState {
 
-  uint32_t p1_score;
-  uint32_t p2_score;
-  uint32_t total_rounds;
-  int p1_previous_move;
-  int p2_previous_move;
+  uint32_t p1_score; // current score for participant 1
+  uint32_t p2_score; // current score for participant 2
+  uint32_t total_rounds; // how many rounds are in this game
+  int32_t p1_previous_move; // what participant 1 did on the previous round
+  int32_t p2_previous_move; // what participant 2 did on the previous round
 } GameState_t;
 
+/**
+ * This is the state for each participant.
+ */
 typedef struct ParticipantProc {
 
   int fd_from; // stdout for the process
@@ -64,11 +83,14 @@ typedef struct ParticipantProc {
   char *name; // name of the participant
 } ParticipantProc_t;
 
+/**
+ * This is the state for the entire set of games.
+ */
 typedef struct RunningCount {
 
-  int32_t p1_wins;
-  int32_t p2_wins;
-  int32_t ties;
+  int32_t p1_wins; // how many times participant 1 has won
+  int32_t p2_wins; // how many times participant 2 has won
+  int32_t ties; // how many times the games have ended in a tie
 } RunningCount_t;
 
 #endif
