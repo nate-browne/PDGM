@@ -42,8 +42,10 @@ int main(int argc, char *argv[]) {
     break;
   }
 
+  // find the newline and replace with the null
   line[strcspn(line, "\n")] = '\0';
 
+  // parse the string number into an unsigned long (a.k.a. uint64_t)
   errno = 0;
   char *end;
   uint64_t parsed = strtoul(line, &end, 10); 
