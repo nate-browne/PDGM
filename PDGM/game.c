@@ -1,7 +1,7 @@
 #include "pdgm.h"
 #include "functions.h"
 
-static int32_t process_round_result(GameState_t *gs, int p1_decision, int p2_decision) {
+static void process_round_result(GameState_t *gs, int p1_decision, int p2_decision) {
 
   gs->p1_previous_move = p1_decision;
   gs->p2_previous_move = p2_decision;
@@ -33,11 +33,11 @@ int32_t run_game(GameState_t *gs, ParticipantProc_t *p1, ParticipantProc_t *p2) 
   
     // next, print the opponent's previous move only if it's not the first turn
     if(i > 0) {
-      sprintf(buffer, BUFSIZ, OPP_PREVIOUS_MOVE_STR, gs->p2_previous_move);
+      snprintf(buffer, BUFSIZ, OPP_PREVIOUS_MOVE_STR, gs->p2_previous_move);
       procprint(p1, buffer);
       memset(buffer, '\0', BUFSIZ);
     
-      sprintf(buffer, BUFSIZ, OPP_PREVIOUS_MOVE_STR, gs->p1_previous_move);
+      snprintf(buffer, BUFSIZ, OPP_PREVIOUS_MOVE_STR, gs->p1_previous_move);
       procprint(p2, buffer);
       memset(buffer, '\0', BUFSIZ);
     }

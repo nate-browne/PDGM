@@ -19,6 +19,12 @@ static void run_games(const int32_t num_games, GameState_t *gs, RunningCount_t *
 }
 
 int main(int argc, char *argv[]) {
+
+  if(argc != 3) {
+    fprintf(stderr, "ERROR: Incorrect number of arguments passed.\n");
+    exit(1);
+  }
+
   srand(time(NULL));
 
   char line[BUFSIZ] = {0};

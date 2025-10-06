@@ -28,6 +28,8 @@ ifeq ($(UNAME),Darwin)
 endif
 endif
 
+.PHONY: PDGM tester
+
 HEADERS   = functions.h pdgm.h strings.h
 SRCS      = pdgm.c rand.c init.c game.c process.c
 TEST_SRCS = rand.c init.c test.c process.c
