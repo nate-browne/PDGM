@@ -10,14 +10,23 @@ printf("in file %s ", __FILE__); \
 printf("on line %d\n", __LINE__); \
 exit(1);}
 
+/**
+ * Quick test to ensure that all generated values are
+ * within the range (-11,11)
+ */
 void test_calculate_round_number(void) {
 
   srand(time(NULL));
-  int t1 = calculate_round_number();
-  ASSERT(t1 >= -10)
-  ASSERT(t1 <= 10)
+  for(int32_t i = 0; i < 10; ++i) {
+    int t1 = calculate_round_number();
+    ASSERT(t1 >= -10)
+    ASSERT(t1 <= 10)
+  }
 }
 
+/**
+ * Test that `init_game` properly sets all fields of a GameState_t
+ */
 void test_init_game(void) {
   GameState_t gs;
   init_game(&gs);
@@ -30,6 +39,9 @@ void test_init_game(void) {
   ASSERT(gs.total_rounds <= 210);
 }
 
+/**
+ * Test that `init_running_count` sets up a RunningCount_t struct.
+ */
 void test_init_running_count(void) {
   RunningCount_t rc;
   init_running_count(&rc);

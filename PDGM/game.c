@@ -10,7 +10,7 @@
  * one cooperate one defect --> defector gets 5 points cooperator gets 0
  * both defect --> 1 point each
  */
-static void process_round_result(GameState_t *gs, int32_t p1_decision, int32_t p2_decision) {
+static void process_round_result(GameState_t *gs, const int32_t p1_decision, const int32_t p2_decision) {
 
   // Store previous moves to report them back to the participants
   gs->p1_previous_move = p1_decision;
