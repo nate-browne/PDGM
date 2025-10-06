@@ -8,7 +8,7 @@
 # the -Werror flag turns any compiler warnings into errors, stopping compilation
 C_FLAGS   = -c -std=c99 -pedantic -Wall -Wextra -D__EXTENSIONS__
 OPT       = -O3 -Werror -Wno-unused-but-set-variable
-D_FLAG    = -g
+D_FLAG    = -g -Werror -Wno-unused-but-set-variable
 LD_FLAGS  = -Wall -Wextra
 EXE       = pdgm
 TEST      = tester
@@ -47,7 +47,7 @@ TEST_OBJS = $(TEST_SRCS:.c=.o)
 # Used by the OBJS and TEST_OBJS targets below
 .c.o:
 	@echo "Compiling each C source file separately..."
-	$(GCC) $(C_FLAGS) $(OPT) $<
+	$(GCC) $(C_FLAGS) $(D_FLAG) $<
 	@echo ""
 
 # Target for creating the engine exectuable
@@ -55,7 +55,7 @@ TEST_OBJS = $(TEST_SRCS:.c=.o)
 # moves the exectuable to the bin directory, and echos the results out.
 $(EXE): $(OBJS)
 	@echo "Creating executable..."
-	$(GCC) -o $(EXE) $(LD_FLAGS) $(OPT) $(OBJS)
+	$(GCC) -o $(EXE) $(LD_FLAGS) $(D_FLAG) $(OBJS)
 	@mv $(EXE) ../bin
 	@echo ""
 	@echo "Compilation successful!"
