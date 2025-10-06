@@ -17,8 +17,12 @@ class ParticipantCommands(Enum):
 if __name__ == '__main__':
     random.seed()
 
-    while line := sys.stdin.readline().rstrip() != "quit":
+    while True:
+        line = sys.stdin.readline().rstrip()
+        if line == 'quit':
+            break
+
         if random.randrange(300) % 2 == 0:
-            print(f"{ParticipantCommands.COOPERATE.value}")
+            print(f"{ParticipantCommands.COOPERATE.value}", flush=True)
         else:
-            print(f'{ParticipantCommands.DEFECT.value}')
+            print(f'{ParticipantCommands.DEFECT.value}', flush=True)

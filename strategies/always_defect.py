@@ -12,5 +12,9 @@ class ParticipantCommands(Enum):
     NOOP = 2
 
 if __name__ == '__main__':
-    while line := sys.stdin.readline().rstrip() != "quit":
-        print(f'{ParticipantCommands.DEFECT.value}')
+    while True:
+        line = sys.stdin.readline().rstrip()
+        if line == 'quit':
+            break
+
+        print(f'{ParticipantCommands.DEFECT.value}', flush=True)

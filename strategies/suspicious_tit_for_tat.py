@@ -30,7 +30,7 @@ if __name__ == '__main__':
         if 'Round' in cmd:
             round_num = extract_num_val(cmd)
             if round_num == 1:
-                print(f'{ParticipantCommands.DEFECT.value}')
+                print(f'{ParticipantCommands.DEFECT.value}', flush=True)
             continue
 
         if 'Opponent' in cmd:
@@ -39,6 +39,6 @@ if __name__ == '__main__':
                 opp_defected = True
 
         if opp_defected:
-            print(f'{ParticipantCommands.DEFECT.value}')
+            print(f'{ParticipantCommands.DEFECT.value}', flush=True)
         else:
-            print(f'{ParticipantCommands.COOPERATE.value}')
+            print(f'{ParticipantCommands.COOPERATE.value}', flush=True)

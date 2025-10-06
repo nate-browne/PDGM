@@ -37,6 +37,6 @@ if __name__ == '__main__':
                 opp_defected = True
 
         if opp_defected:
-            print(f'{ParticipantCommands.DEFECT.value}')
+            print(f'{ParticipantCommands.DEFECT.value}', flush=True)
         else:
-            print(f'{ParticipantCommands.COOPERATE.value}')
+            print(f'{ParticipantCommands.COOPERATE.value}', flush=True)
