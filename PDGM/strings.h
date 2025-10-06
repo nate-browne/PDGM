@@ -8,6 +8,6 @@
 #define ROUND_STR "Round: %u\n"
 #define OPP_PREVIOUS_MOVE_STR "Opponent Previous Move: %d\n"
 
-#define GAME_STR "Game %lu\n"
+#define GAME_STR "\nGame %lu\n"
 
 #endif
