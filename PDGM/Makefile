@@ -1,6 +1,6 @@
 ########################################################################
 # This inner makefile actually does the work of the compilation.
-# See line 36 for the only reason this makefile should be edited (probably).
+# See line 43 for the only reason this makefile should be edited (probably).
 ########################################################################
 
 # STEP 1: Create variables used
