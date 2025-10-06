@@ -60,9 +60,9 @@ int main(int argc, char *argv[]) {
   run_games(num_games, &gs, &rc, pp1, pp2);
 
   char *winner;
-  if(rc.p1_wins > rc.p2_wins) {
+  if((rc.p1_wins > rc.p2_wins) && (rc.p1_wins > rc.ties)) {
     winner = pp1->name;
-  } else if(rc.p1_wins < rc.p2_wins) {
+  } else if((rc.p1_wins < rc.p2_wins) && (rc.p2_wins > rc.ties)) {
     winner = pp2->name;
   } else {
     winner = "tie";
