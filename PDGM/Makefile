@@ -94,7 +94,7 @@ debug: $(EXE)
 # Target to run the memory safety tool on the engine executable
 # Compiles the engine first
 memcheck: $(EXE)
-	$(LEAKER) ../bin/$(EXE)
+	$(LEAKER) ../bin/$(EXE) ../strategies/grim.py ../strategies/suspicious_tit_for_tat.py
 
 # Target to reset the directories. Removes the bin directory
 # (and everything in it) and removes any other lingering,
