@@ -29,7 +29,7 @@ endif
 endif
 
 HEADERS   = functions.h pdgm.h strings.h
-SRCS      = pdgm.c rand.c init.c message.c game.c process.c
+SRCS      = pdgm.c rand.c init.c game.c process.c
 TEST_SRCS = rand.c init.c test.c process.c
 
 # Generic variable for converting the engine source files into object files
