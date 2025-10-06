@@ -17,9 +17,9 @@
 
 #include "strings.h"
 
-#define NAME "PDGM v0.1.0"
+#define NAME "PDGM v1.0.0"
 
-#define DEFAULT_GAME_NUMBER 3
+#define DEFAULT_GAME_NUMBER 50
 
 // score constants
 enum POINTS_OPTIONS {

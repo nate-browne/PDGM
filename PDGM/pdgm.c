@@ -47,6 +47,8 @@ int main(int argc, char *argv[]) {
 
   if(parsed > DEFAULT_GAME_NUMBER) {
     num_games = parsed; 
+  } else {
+    printf("Not enough games selected for a decent sample size. Defaulting to %d\n", num_games);
   }
 
   ParticipantProc_t *pp1 = start_participant_process(argv[FIRST_PARTICIPANT]);
