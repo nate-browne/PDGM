@@ -11,7 +11,7 @@ static bool flip_coin(void) {
 /**
  * Calculate a modifier for the number of rounds.
  * The base number is 200, and this function generates a positive
- * or negative number in the range [0,11] for the number of rounds
+ * or negative number in the range (-11,11) for the number of rounds
  * to be played.
  */
 int32_t calculate_round_number(void) {
