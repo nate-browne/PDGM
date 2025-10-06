@@ -38,8 +38,6 @@ if __name__ == '__main__':
             opp_prev_move = extract_num_val(cmd)
             if opp_prev_move == ParticipantCommands.DEFECT.value:
                 opp_defected = True
-            else:
-                continue
 
         if opp_defected:
             print(f'{ParticipantCommands.DEFECT.value}', flush=True)
