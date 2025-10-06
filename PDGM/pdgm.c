@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 
   fprintf(stdout, WELCOME_STR, NAME);
 
-  fprintf(stdout, GAMES_PROMPT);
+  fprintf(stdout, GAMES_PROMPT, INT32_MAX);
   fflush(stdout);
   memset(line, '\0', BUFSIZ);
 
@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
   if(parsed > DEFAULT_GAME_NUMBER) {
     num_games = parsed; 
   } else {
-    printf("Not enough games selected for a decent sample size. Defaulting to %d\n", num_games);
+    fprintf(stdout, "Not enough games selected for a decent sample size. Defaulting to %d\n", num_games);
   }
 
   ParticipantProc_t *pp1 = start_participant_process(argv[FIRST_PARTICIPANT]);

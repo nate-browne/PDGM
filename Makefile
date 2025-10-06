@@ -36,3 +36,8 @@ clean:
 # calls the inner makefile target (see other file for explanation)
 new:
 	@make -C ./PDGM/ new
+
+## I mistype this enough to warrant adding it
+lcean:
+	@echo "You meant 'make clean', didn't you. Don't worry, I'll fix it."
+	@make -C ./PDGM/ clean
