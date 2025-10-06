@@ -10,7 +10,7 @@ C_FLAGS   = -c -std=c99 -pedantic -Wall -Wextra -D__EXTENSIONS__
 OPT       = -O3 -Werror -Wno-unused-but-set-variable
 D_FLAG    = -g
 LD_FLAGS  = -Wall -Wextra
-EXE       = PDGM
+EXE       = pdgm
 TEST      = tester
 GCC       = gcc
 RM        = rm
