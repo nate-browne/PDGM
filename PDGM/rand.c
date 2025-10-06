@@ -5,11 +5,16 @@
  * For this function, heads = true and tails = false
  */
 static bool flip_coin(void) {
-  int value = rand();
-  return value % 2 == 0;
+  return rand() % 2 == 0;
 }
 
+/**
+ * Calculate a modifier for the number of rounds.
+ * The base number is 200, and this function generates a positive
+ * or negative number in the range [0,11] for the number of rounds
+ * to be played.
+ */
 int32_t calculate_round_number(void) {
   int32_t value = rand() % ROUND_PLUS_MINUS;
-  return (flip_coin()) ? value: -value;
+  return (flip_coin()) ? value : -value;
 }
