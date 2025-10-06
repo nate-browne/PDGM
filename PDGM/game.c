@@ -81,10 +81,13 @@ int32_t run_game(GameState_t *gs, ParticipantProc_t *p1, ParticipantProc_t *p2) 
 
   // Done with all rounds, determine who won/lost or if a tie occurred
   if(gs->p1_score > gs->p2_score) {
+    fprintf(stdout, GAME_WINNER_STR, p1->name);
     return P1_WINS;
   } else if(gs->p1_score < gs->p2_score) {
+    fprintf(stdout, GAME_WINNER_STR, p2->name);
     return P2_WINS;
   } else {
+    fprintf(stdout, GAME_WINNER_STR, "Tie");
     return TIE;
   }
 }

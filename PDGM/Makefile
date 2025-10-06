@@ -31,7 +31,7 @@ endif
 .PHONY: pdgm tester clean new
 
 HEADERS   = functions.h pdgm.h strings.h
-SRCS      = pdgm.c rand.c init.c game.c process.c
+SRCS      = pdgm.c rand.c init.c game.c process.c utils.c
 TEST_SRCS = rand.c init.c test.c process.c
 
 # Generic variable for converting the engine source files into object files
@@ -101,7 +101,7 @@ memcheck: $(EXE)
 # unnecessary files
 clean:
 	@echo "Cleaning up"
-	$(RM) -rf ../bin *.o .DS_Store ../*.debug ../log.*
+	$(RM) -rf ../bin *.o .DS_Store ../*.debug ../log.* ../results.txt
 	@echo ""
 	@echo "Clean."
 

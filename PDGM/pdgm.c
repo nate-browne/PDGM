@@ -9,8 +9,13 @@
 static void run_games(const uint64_t num_games, GameState_t *gs, RunningCount_t *rc, ParticipantProc_t *pp1, ParticipantProc_t *pp2) {
   for(uint64_t i = 0; i < num_games; ++i) {
     init_game(gs);
-    fprintf(stdout, GAME_STR, i + 1); // print which game number we're on to the console
+
+    // print which game number we're on to the console
+    fprintf(stdout, GAME_STR_1); 
+    fprintfcomma(stdout, i + 1);
+    fprintf(stdout, GAME_STR_2);
     fprintf(stdout, "%s\n\n", "*****************");
+
     switch(run_game(gs, pp1, pp2)) {
       case P1_WINS:
         rc->p1_wins++;
@@ -40,7 +45,9 @@ int main(int argc, char *argv[]) {
   char line[BUFSIZ] = {0};
 
   fprintf(stdout, WELCOME_STR, NAME);
-  fprintf(stdout, GAMES_PROMPT, UINT64_MAX);
+  fprintf(stdout, GAMES_PROMPT_1);
+  fprintfcomma(stdout, UINT64_MAX);
+  fprintf(stdout, GAMES_PROMPT_2);
   fflush(stdout);
 
   // infinite loop to grab the number of games we want to play

@@ -23,4 +23,8 @@ extern ParticipantProc_t *start_participant_process(char *);
 extern void procprint(ParticipantProc_t *, const char *);
 extern void procread(ParticipantProc_t *, char *);
 
+/* utils.c */
+
+extern void fprintfcomma(FILE *, uint64_t);
+
 #endif
