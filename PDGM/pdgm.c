@@ -92,7 +92,8 @@ int main(int argc, char *argv[]) {
     fprintf(stdout, "\nNot enough games selected for a decent sample size. Defaulting to %lu\n", num_games);
   }
 
-  // Fire up participants and initialize the structs
+  /* Fire up participants and initialize the structs */
+
   ParticipantProc_t *pp1 = start_participant_process(argv[FIRST_PARTICIPANT]);
   ParticipantProc_t *pp2 = start_participant_process(argv[SECOND_PARTICIPANT]);
 
@@ -109,7 +110,7 @@ int main(int argc, char *argv[]) {
   } else if((rc.p1_wins < rc.p2_wins) && (rc.p2_wins > rc.ties)) {
     winner = pp2->name;
   } else {
-    winner = "tie";
+    winner = "Tie";
   }
 
   // report back, quit the participants
