@@ -50,7 +50,7 @@ int32_t run_game(GameState_t *gs, ParticipantProc_t *p1, ParticipantProc_t *p2) 
   for(uint32_t i = 0; i < gs->total_rounds; ++i) {
     // first, print the round number to the participants (and the console)
     snprintf(buffer, BUFSIZ, ROUND_STR, i + 1);
-    fprintf(stdout, buffer);
+    fprintf(stdout, "%s", buffer);
     procprint(p1, buffer);
     procprint(p2, buffer);
     memset(buffer, '\0', BUFSIZ);

@@ -26,7 +26,7 @@ static void set_up_child_IO(int to_prog[2], int from_prog[2]) {
  * and in that process we start the participant executable to keep
  * the current process (and therefore current program) running.
  */
-ParticipantProc_t * start_participant_process(const char *exe_path) {
+ParticipantProc_t * start_participant_process(char *exe_path) {
   int pid;
   int to_prog[2], from_prog[2];
 
