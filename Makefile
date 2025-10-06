@@ -4,13 +4,12 @@
 # convenience of not having to `cd` into the inner directory.
 ########################################################################
 
-EXE       = PDGM
 TEST      = tester
 
 # Create the actual engine executable
 # calls the inner makefile target (see other file for explanation)
 $(EXE):
-	@make -C ./PDGM/ $(EXE)
+	@make -C ./PDGM/ PDGM
 
 # create the perft test executable
 # calls the inner makefile target (see other file for explanation)

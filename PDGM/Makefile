@@ -28,7 +28,7 @@ ifeq ($(UNAME),Darwin)
 endif
 endif
 
-.PHONY: PDGM tester
+.PHONY: PDGM tester clean new
 
 HEADERS   = functions.h pdgm.h strings.h
 SRCS      = pdgm.c rand.c init.c game.c process.c
