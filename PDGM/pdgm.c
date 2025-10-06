@@ -1,8 +1,8 @@
 #include "pdgm.h"
 #include "functions.h"
 
-static void run_games(const int32_t num_games, GameState_t *gs, RunningCount_t *rc, ParticipantProc_t *pp1, ParticipantProc_t *pp2) {
-  for(int32_t i = 0; i < num_games; ++i) {
+static void run_games(const uint64_t num_games, GameState_t *gs, RunningCount_t *rc, ParticipantProc_t *pp1, ParticipantProc_t *pp2) {
+  for(uint64_t i = 0; i < num_games; ++i) {
     init_game(gs);
     switch(run_game(gs, pp1, pp2)) {
       case 0:
@@ -31,7 +31,7 @@ int main(int argc, char *argv[]) {
 
   fprintf(stdout, WELCOME_STR, NAME);
 
-  fprintf(stdout, GAMES_PROMPT, INT32_MAX);
+  fprintf(stdout, GAMES_PROMPT, UINT64_MAX);
   fflush(stdout);
   memset(line, '\0', BUFSIZ);
 
@@ -42,13 +42,27 @@ int main(int argc, char *argv[]) {
     break;
   }
 
-  int parsed = atoi(line);
-  int32_t num_games = DEFAULT_GAME_NUMBER;
+  line[strcspn(line, "\n")] = '\0';
 
-  if(parsed > DEFAULT_GAME_NUMBER) {
+  errno = 0;
+  char *end;
+  uint64_t parsed = strtoul(line, &end, 10); 
+  if(errno) {
+    perror("Error when parsing string into unsigned long");
+  }
+
+  if(*end != '\0') {
+    fprintf(stderr, "Number contained invalid characters\n");
+    exit(1);
+  }
+
+
+  uint64_t num_games = DEFAULT_GAME_NUMBER;
+
+  if(parsed >= DEFAULT_GAME_NUMBER) {
     num_games = parsed; 
   } else {
-    fprintf(stdout, "Not enough games selected for a decent sample size. Defaulting to %d\n", num_games);
+    fprintf(stdout, "\nNot enough games selected for a decent sample size. Defaulting to %lu\n", num_games);
   }
 
   ParticipantProc_t *pp1 = start_participant_process(argv[FIRST_PARTICIPANT]);
