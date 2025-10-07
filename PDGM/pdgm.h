@@ -88,9 +88,8 @@ typedef struct ParticipantProc {
  */
 typedef struct RunningCount {
 
-  int32_t p1_wins; // how many times participant 1 has won
-  int32_t p2_wins; // how many times participant 2 has won
-  int32_t ties; // how many times the games have ended in a tie
+  uint64_t *p1_scores; // final scores from each game for p1
+  uint64_t *p2_scores; // final scores from each game for p2
 } RunningCount_t;
 
 #endif

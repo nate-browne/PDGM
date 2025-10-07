@@ -42,7 +42,7 @@ static void process_round_result(GameState_t *gs, const int32_t p1_decision, con
  * Once we've finished all rounds, we report back to the caller to determine which
  * participant is the winner or if it's a tie.
  */
-int32_t run_game(GameState_t *gs, ParticipantProc_t *p1, ParticipantProc_t *p2) {
+void run_game(GameState_t *gs, ParticipantProc_t *p1, ParticipantProc_t *p2) {
 
   char buffer[BUFSIZ] = {0};
   int p1_move, p2_move;
@@ -77,17 +77,5 @@ int32_t run_game(GameState_t *gs, ParticipantProc_t *p1, ParticipantProc_t *p2) 
     memset(buffer, '\0', BUFSIZ);
 
     process_round_result(gs, p1_move, p2_move);
-  }
-
-  // Done with all rounds, determine who won/lost or if a tie occurred
-  if(gs->p1_score > gs->p2_score) {
-    fprintf(stdout, GAME_WINNER_STR, p1->name);
-    return P1_WINS;
-  } else if(gs->p1_score < gs->p2_score) {
-    fprintf(stdout, GAME_WINNER_STR, p2->name);
-    return P2_WINS;
-  } else {
-    fprintf(stdout, GAME_WINNER_STR, "Tie");
-    return TIE;
   }
 }

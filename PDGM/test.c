@@ -44,11 +44,13 @@ void test_init_game(void) {
  */
 void test_init_running_count(void) {
   RunningCount_t rc;
-  init_running_count(&rc);
+  init_running_count(&rc, 30);
 
-  ASSERT(rc.p1_wins == 0);
-  ASSERT(rc.p2_wins == 0);
-  ASSERT(rc.ties == 0);
+  ASSERT(rc.p1_scores != NULL);
+  ASSERT(rc.p2_scores != NULL);
+
+  free(rc.p1_scores);
+  free(rc.p2_scores);
 }
 
 int main(void) {

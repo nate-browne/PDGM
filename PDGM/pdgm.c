@@ -16,18 +16,21 @@ static void run_games(const uint64_t num_games, GameState_t *gs, RunningCount_t 
     fprintf(stdout, GAME_STR_2);
     fprintf(stdout, "%s\n\n", "*****************");
 
-    switch(run_game(gs, pp1, pp2)) {
-      case P1_WINS:
-        rc->p1_wins++;
-        break;
-      case P2_WINS:
-        rc->p2_wins++;
-        break;  
-      case TIE:
-        rc->ties++;
-        break;
-    }
+    run_game(gs, pp1, pp2);
+    rc->p1_scores[i] = gs->p1_score;
+    rc->p2_scores[i] = gs->p2_score;
   }
+}
+
+/**
+ * Calculate the average score across all of the games for a given participant
+ */
+static uint64_t calc_average_score(uint64_t *scores, uint64_t num_games) {
+  uint64_t total = 0; 
+  for(uint64_t i = 0; i < num_games; ++i) {
+    total += scores[i];
+  }
+  return total / num_games;
 }
 
 int main(int argc, char *argv[]) {
@@ -98,23 +101,21 @@ int main(int argc, char *argv[]) {
   ParticipantProc_t *pp2 = start_participant_process(argv[SECOND_PARTICIPANT]);
 
   RunningCount_t rc;
-  init_running_count(&rc);
+  init_running_count(&rc, num_games);
 
   GameState_t gs;
 
   run_games(num_games, &gs, &rc, pp1, pp2);
 
-  char *winner;
-  if((rc.p1_wins > rc.p2_wins) && (rc.p1_wins > rc.ties)) {
-    winner = pp1->name;
-  } else if((rc.p1_wins < rc.p2_wins) && (rc.p2_wins > rc.ties)) {
-    winner = pp2->name;
-  } else {
-    winner = "Tie";
-  }
+  // Report
+  uint64_t p1_avg_score = calc_average_score(rc.p1_scores, num_games);
+  uint64_t p2_avg_score = calc_average_score(rc.p2_scores, num_games);
 
-  // report back, quit the participants
-  fprintf(stdout, RESULTS_STR, pp1->name, rc.p1_wins, pp2->name, rc.p2_wins, rc.ties, winner);
+  fprintf(stdout, REPORT_STR, pp1->name, p1_avg_score, pp2->name, p2_avg_score);
+
+  free(rc.p1_scores);
+  free(rc.p2_scores);
+
   procprint(pp1, "quit");
   procprint(pp2, "quit");
   destroy_participant_process(pp1, SIGTERM);
