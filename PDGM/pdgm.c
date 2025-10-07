@@ -3,8 +3,8 @@
 
 /**
  * Hidden function that runs the number of games specified. For each game, we need to initialize the
- * GameState_t struct, run the game (which is some number of rounds), then we increment the RunningCount_t
- * struct based on who won/lost or if a tie occurred.
+ * GameState_t struct, run the game (which is some number of rounds), then we update the scores in the running count
+ * struct.
  */
 static void run_games(const uint64_t num_games, GameState_t *gs, RunningCount_t *rc, ParticipantProc_t *pp1, ParticipantProc_t *pp2) {
   for(uint64_t i = 0; i < num_games; ++i) {
@@ -107,11 +107,14 @@ int main(int argc, char *argv[]) {
 
   run_games(num_games, &gs, &rc, pp1, pp2);
 
-  // Report
+  /* report results */
+
   uint64_t p1_avg_score = calc_average_score(rc.p1_scores, num_games);
   uint64_t p2_avg_score = calc_average_score(rc.p2_scores, num_games);
 
   fprintf(stdout, REPORT_STR, pp1->name, p1_avg_score, pp2->name, p2_avg_score);
+
+  /* cleanup and exit */
 
   free(rc.p1_scores);
   free(rc.p2_scores);
