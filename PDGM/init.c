@@ -16,7 +16,8 @@ void init_game(GameState_t *gs) {
 
 /**
  * Basic function that takes in a pointer to a RunningCount_t and
- * sets it up. Sets all scores to 0.
+ * sets it up. Initializes both score arrays with the number of games
+ * we'll be playing
  */
 void init_running_count(RunningCount_t *rc, const uint64_t num_games) {
   rc->p1_scores = calloc(num_games, sizeof(uint64_t));

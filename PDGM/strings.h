@@ -13,4 +13,12 @@
 #define GAME_STR_1 "\nGame "
 #define GAME_STR_2 "\n"
 
+#define ERR_ARGS_NUM_STR "ERROR: Incorrect number of arguments passed.\n"
+
+#define ERRNO_ERR_STR "Error when parsing string into unsigned long: "
+
+#define INVALID_CHAR_ERR_STR "Number \"%s\" contained invalid characters\n"
+
+#define TOO_SMALL_GAME_NO_STR "\nNot enough games selected for a decent sample size. Defaulting to %lu\n"
+
 #endif

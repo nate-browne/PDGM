@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
   // args should be exe name (argv[0]), participant script 1 (argv[1])
   // and participant scrpit 2 (argv[2])
   if(argc != 3) {
-    fprintf(stderr, "ERROR: Incorrect number of arguments passed.\n");
+    fprintf(stderr, ERR_ARGS_NUM_STR);
     exit(1);
   }
 
@@ -69,20 +69,22 @@ int main(int argc, char *argv[]) {
   // find the newline and replace with the null
   line[strcspn(line, "\n")] = '\0';
 
-  // parse the string number into an unsigned long (a.k.a. uint64_t)
+  /* parse the string number into an unsigned long (a.k.a. uint64_t) */
+
   errno = 0;
   char *end;
   uint64_t parsed = strtoul(line, &end, PARSE_BASE); 
 
-  // int value was out of range
+  // Error #1: int value was out of range
   if(errno) {
-    perror("Error when parsing string into unsigned long: ");
+    perror(ERRNO_ERR_STR);
     exit(1);
   }
 
-  // some other non-parsable character was present (e.g. in "2 hithere", end would point to "hithere")
+  // Error #2: some other non-parsable character was present
+  // (e.g. in "2 hithere", end would point to "hithere")
   if(*end != '\0') {
-    fprintf(stderr, "Number \"%s\"contained invalid characters\n", line);
+    fprintf(stderr, INVALID_CHAR_ERR_STR, line);
     exit(1);
   }
 
@@ -92,7 +94,7 @@ int main(int argc, char *argv[]) {
   if(parsed >= DEFAULT_GAME_NUMBER) {
     num_games = parsed; 
   } else {
-    fprintf(stdout, "\nNot enough games selected for a decent sample size. Defaulting to %lu\n", num_games);
+    fprintf(stdout, TOO_SMALL_GAME_NO_STR, num_games);
   }
 
   /* Fire up participants and initialize the structs */
